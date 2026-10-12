@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "module7-app",
+    "slug": "module7-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#E6F4FF"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FF"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
