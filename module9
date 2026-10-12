@@ -1,0 +1,166 @@
+Important Note:
+• Add your initials in every variable you are using. Example, your full name is Juan R. Dela Cruz,
+here is an example of a variable on your code > last_namejrd .
+• Backup your codes on GitHub. Add jtiongco.work@gmail.com / senseijoswa as collaborator.
+• Follow the repository structure:
+LastnameFirstname>AY>Sem>SubjCode>MonthDayYear>Module#>Your Project folders
+and Files here.
+• New Module, New ve inside the module folder, New pip install kivy/django
+Ex. TiongcoJoshua>2526>1st>ISE101>
+Learning Objectives
+By the end of this week, students will be able to:
+1. Use useState to manage component state.
+2. Pass props between components.
+3. Handle user events (button press, text input).
+4. Build a simple Task Manager Screen.
+Lab Exercise
+Suggested Project Structure
+MyApp/
+├── App.js
+├── package.json
+├── babel.config.js
+├── assets/
+│ └── icon.png
+├── components/
+│ ├── Header.js
+│ ├── Footer.js
+│ ├── WelcomeMessage.js
+│ └── TaskItem.js //new
+└── screens/
+├── HomeScreen.js
+└── TaskScreen.js //new
+Step 1: Create a Task Item Component
+File: components/TaskItem.js
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+export default function TaskItem({ task, onDelete }) {
+return (
+<View style={styles.item}>
+<Text style={styles.text}>{task}</Text>
+<TouchableOpacity onPress={onDelete}>
+<Text style={styles.delete}> </Text>
+</TouchableOpacity>
+</View>
+);
+
+Page
+2 of
+4
+
+}
+const styles = StyleSheet.create({
+item: {
+flexDirection: "row",
+justifyContent: "space
+
+-between",
+
+padding: 12,
+marginVertical: 5,
+backgroundColor: "#e0f7fa",
+borderRadius: 8,
+},
+text: {
+fontSize: 16,
+},
+delete: {
+fontSize: 18,
+color: "red",
+},
+});
+Step 2: Create Task Manager Screen
+File: screens/TaskScreen.js
+import React, { useState } from "react";
+import {
+View,
+Text,
+TextInput,
+Button,
+FlatList,
+StyleSheet,
+} from "react
+-native";
+
+import TaskItem from "../components/TaskItem";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+export default function TaskScreen() {
+const [task, setTask] = useState("");
+const [tasks, setTasks] = useState([]);
+const addTask = () => {
+if (task.trim() !== "") {
+setTasks([...tasks, task]);
+setTask("");
+}
+};
+const deleteTask = (index) => {
+setTasks(tasks.filter((_, i) => i !== index));
+};
+return (
+<View style={styles.container}>
+<Header />
+<View style={styles.body}>
+<Text style={styles.title}>
+
+Task Manager</Text>
+
+<TextInput
+style={styles.input}
+placeholder="Enter a new task"
+value={task}
+onChangeText={setTask}
+/>
+
+Page 3 of 4
+
+<Button title="Add Task" onPress={addTask} />
+<FlatList
+data={tasks}
+keyExtractor={(item, index) => index.toString()}
+renderItem={({ item, index }) => (
+<TaskItem task={item} onDelete={() => deleteTask(index)} />
+)}
+/>
+</View>
+<Footer />
+</View>
+);
+}
+const styles = StyleSheet.create({
+container: {
+flex: 1,
+},
+body: {
+flex: 1,
+padding: 20,
+},
+title: {
+fontSize: 22,
+fontWeight: "bold",
+marginBottom: 15,
+},
+input: {
+borderWidth: 1,
+borderColor: "#ccc",
+padding: 10,
+marginBottom: 10,
+borderRadius: 5,
+},
+});
+Step 3: Update App.js to Test Task Screen
+File: App.js
+import React from "react";
+import TaskScreen from "./screens/TaskScreen";
+export default function App() {
+return <TaskScreen />;
+}
+Exercises
+1. Task Adding (5 pts)
+a. Add three tasks (e.g., “Read React docs”, “Finish homework”, “Buy groceries”).
+2. Task Deleting (5 pts)
+a. Use button to remove one of the tasks.
+3. Props Practice (5 pts)
+a. Modify TaskItem.js to display task in uppercase using props.
+4. UI Customization (5 pts)
+a. Change background color of tasks.
+5. Increase input box padding.

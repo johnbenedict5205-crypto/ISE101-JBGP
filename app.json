@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "module7-app",
-    "slug": "module7-app",
+    "name": "Module9TaskManager",
+    "slug": "module9-task-manager",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "splash": {
-      "backgroundColor": "#E6F4FF"
+      "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -16,7 +16,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FF"
+        "backgroundColor": "#ffffff"
       }
     },
     "web": {

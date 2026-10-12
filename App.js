@@ -1,6 +1,6 @@
-import React from 'react';
-import HomeScreen from './screens/HomeScreen';
+import React from "react";
+import TaskScreen from "./screens/TaskScreen";
 
 export default function App() {
-  return <HomeScreen />;
+  return <TaskScreen />;
 }
