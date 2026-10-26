@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "MyWeek2App",
-    "slug": "MyWeek2App",
+    "name": "MyFirstApp",
+    "slug": "MyFirstApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myweek2app",
+    "scheme": "myfirstapp",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
