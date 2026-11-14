@@ -1,43 +1,17 @@
 
+import { router } from "expo-router";
 import { useState } from "react";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+
 import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-} from "react-native";
-
+  announcements as initialAnnouncements,
+  type AnnouncementItem,
+} from "../data/announcements";
 import AnnouncementCard from "./AnnouncementCard";
-
-type AnnouncementItem = {
-  id: string;
-  title: string;
-  category: string;
-  read: boolean;
-};
 
 export default function AnnouncementPanel() {
   const [announcements, setAnnouncements] =
-    useState<AnnouncementItem[]>([
-      {
-        id: "ANN-001",
-        title: "Enrollment Reminder",
-        category: "Academic",
-        read: false,
-      },
-      {
-        id: "ANN-002",
-        title: "Sports Festival Announcement",
-        category: "Events",
-        read: false,
-      },
-      {
-        id: "ANN-003",
-        title: "Campus Clean-up Drive",
-        category: "Community",
-        read: true,
-      },
-    ]);
+    useState<AnnouncementItem[]>(initialAnnouncements);
 
   const unreadCount = announcements.filter(
     (announcement) => !announcement.read
@@ -53,25 +27,33 @@ export default function AnnouncementPanel() {
     );
   };
 
+  const handleViewDetails = (id: string) => {
+    router.push(`/announcements/${id}` as any);
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>
-        Campus Announcements
-      </Text>
+      <View style={styles.header}>
+        <Text style={styles.heading}>Announcements</Text>
 
-      <Text style={styles.counter}>
-        Unread Announcements: {unreadCount}
-      </Text>
+        <Text style={styles.unread}>
+          Unread: {unreadCount}
+        </Text>
+      </View>
 
-      <ScrollView>
+      <ScrollView
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+      >
         {announcements.map((announcement) => (
           <AnnouncementCard
             key={announcement.id}
             title={announcement.title}
             category={announcement.category}
             read={announcement.read}
-            onMarkRead={() =>
-              handleMarkRead(announcement.id)
+            onMarkRead={() => handleMarkRead(announcement.id)}
+            onViewDetails={() =>
+              handleViewDetails(announcement.id)
             }
           />
         ))}
@@ -82,18 +64,30 @@ export default function AnnouncementPanel() {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    marginTop: 24,
+    flex: 1,
+    marginTop: 20,
   },
-  heading: {
-    fontSize: 21,
-    fontWeight: "700",
-    marginBottom: 10,
-  },
-  counter: {
-    fontSize: 15,
-    fontWeight: "600",
+
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 12,
+  },
+
+  heading: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#1F2937",
+  },
+
+  unread: {
+    fontSize: 14,
+    fontWeight: "600",
     color: "#2563EB",
+  },
+
+  scrollView: {
+    flex: 1,
   },
 });
