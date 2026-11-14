@@ -1,32 +1,8 @@
 
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import type { Announcement } from "../types/announcement";
-import { getUnreadAnnouncements } from "../services/announcementUtils";
-
-const sampleAnnouncements: Announcement[] = [
-  {
-    id: "a1",
-    title: "Enrollment reminders",
-    category: "Academic",
-    read: false,
-  },
-  {
-    id: "a2",
-    title: "Campus orientation",
-    category: "Events",
-    read: true,
-  },
-  {
-    id: "a3",
-    title: "Library schedule",
-    category: "Notice",
-    read: false,
-  },
-];
+import AnnouncementPanel from "../components/AnnouncementPanel";
 
 export default function HomeScreen() {
-  const unread = getUnreadAnnouncements(sampleAnnouncements);
-
   return (
     <View style={styles.container}>
       {/* NAVBAR */}
@@ -43,7 +19,7 @@ export default function HomeScreen() {
           </TouchableOpacity>
 
           <TouchableOpacity>
-            <Text style={styles.navText}>Docs ↗</Text>
+            <Text style={styles.navText}>Docs →</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -55,29 +31,11 @@ export default function HomeScreen() {
         <Text style={styles.description}>
           One campus. Connected students.
           {"\n"}
-          Welcome to the Week 2 project.
+          Welcome to the Week 3 project.
         </Text>
 
-        {/* ANNOUNCEMENTS */}
-        <View style={styles.announcementBox}>
-          <Text style={styles.sectionTitle}>Campus Announcements</Text>
-
-          <Text style={styles.unread}>
-            Unread announcements: {unread.length}
-          </Text>
-
-          {sampleAnnouncements.map((item) => (
-            <View key={item.id} style={styles.announcementItem}>
-              <Text style={styles.announcementTitle}>
-                {item.title}
-              </Text>
-
-              <Text style={styles.category}>
-                {item.category} • {item.read ? "Read" : "Unread"}
-              </Text>
-            </View>
-          ))}
-        </View>
+        {/* WEEK 3 ANNOUNCEMENT PANEL */}
+        <AnnouncementPanel />
       </View>
     </View>
   );
@@ -137,47 +95,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     lineHeight: 16,
     marginBottom: 25,
-  },
-
-  announcementBox: {
-    width: "100%",
-    maxWidth: 400,
-    backgroundColor: "#FFFFFF",
-    padding: 20,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#E2E8F0",
-  },
-
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#0F172A",
-    marginBottom: 10,
-  },
-
-  unread: {
-    fontSize: 14,
-    color: "#2563EB",
-    fontWeight: "600",
-    marginBottom: 15,
-  },
-
-  announcementItem: {
-    paddingVertical: 12,
-    borderTopWidth: 1,
-    borderTopColor: "#E2E8F0",
-  },
-
-  announcementTitle: {
-    fontSize: 15,
-    fontWeight: "600",
-    color: "#334155",
-  },
-
-  category: {
-    fontSize: 12,
-    color: "#64748B",
-    marginTop: 4,
   },
 });
