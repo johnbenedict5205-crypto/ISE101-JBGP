@@ -1,0 +1,129 @@
+Important Note:
+• Add your initials in every variable you are using. Example, your full name is Juan R. Dela Cruz,
+here is an example of a variable on your code > last_namejrd .
+• Backup your codes on GitHub. Add jtiongco.work@gmail.com / senseijoswa as collaborator.
+• Follow the repository structure:
+LastnameFirstname>AY>Sem>SubjCode>MonthDayYear>Module#>Your Project folders
+and Files here.
+• New Module, New ve inside the module folder, New pip install kivy/django
+Ex. TiongcoJoshua>2526>1st>ISE101>
+Learning Objectives
+By the end of this week, students will be able to:
+1. Understand the purpose of components in React Native.
+2. Create and reuse functional components.
+3. Organize files into folders (components/, screens/).
+4. Apply JSX to build a structured UI.
+Suggested Project Structure
+MyApp/
+├── App.js
+├── package.json
+├── babel.config.js
+├── assets/
+│ └── icon.png
+├── components/
+│ ├── Header.js
+│ └── Footer.js
+└── screens/
+└── HomeScreen.js //new
+Lab Exercise
+Step 1: Creating a Header Component
+File: components/Header.js
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+export default function Header() {
+return (
+<View style={styles.header}>
+<Text style={styles.title}> Student Task & Blog App</Text>
+</View>
+);
+}
+const styles = StyleSheet.create({
+header: {
+padding: 20,
+backgroundColor: "#4CAF50",
+alignItems: "center",
+},
+
+Page 2 of 3
+
+title: {
+color: "white",
+fontSize: 20,
+fontWeight: "bold",
+},
+});
+Step 2: Creating a Footer Component
+File: components/Footer.js
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+export default function Footer() {
+return (
+<View style={styles.footer}>
+<Text style={styles.text}>© 2025 Student App Project</Text>
+</View>
+);
+}
+const styles = StyleSheet.create({
+footer: {
+padding: 10,
+backgroundColor: "#f1f1f1",
+alignItems: "center",
+},
+text: {
+fontSize: 12,
+color: "#888",
+},
+});
+Step 3: Creating the Home Screen
+File: screens/HomeScreen.js
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+export default function HomeScreen() {
+return (
+<View style={styles.container}>
+<Header />
+<View style={styles.body}>
+<Text style={styles.text}> Welcome to your first screen!</Text>
+<Text style={styles.text}>This is built using JSX and components.</Text>
+</View>
+<Footer />
+</View>
+);
+}
+const styles = StyleSheet.create({
+container: {
+flex: 1,
+},
+body: {
+flex: 1,
+justifyContent: "center",
+alignItems: "center",
+},
+
+Page 3 of 3
+
+text: {
+fontSize: 16,
+marginVertical: 5,
+},
+});
+Step 4: Updating App.js
+File: App.js
+import React from "react";
+import HomeScreen from "./screens/HomeScreen";
+export default function App() {
+return <HomeScreen />;
+}
+Exercises
+1. Component creation:
+a. Create a new component WelcomeMessage.js inside components/ that displays:
+Hello, [Your Name]!
+BSIS Section [Your Section]
+
+2. Modify Homescreen
+Import and display the WelcomeMessage below the header.
+3. Styling Challenge
+a. Change the header color to your favorite color
+b. Modify footer text color
